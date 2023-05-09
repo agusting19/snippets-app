@@ -3,6 +3,7 @@ import { useSnippetsStore } from "../store/snippetsStore";
 import { desktopDir } from "@tauri-apps/api/path";
 import { writeTextFile } from "@tauri-apps/api/fs";
 import { Editor } from "@monaco-editor/react";
+import { TfiPencil } from "react-icons/tfi";
 
 const SnippetEditor = () => {
   const selectedSnippet = useSnippetsStore((state) => state.selectedSnippet);
@@ -35,7 +36,7 @@ const SnippetEditor = () => {
           value={selectedSnippet.code ?? ""}
         />
       ) : (
-        <div>Nothing to show</div>
+        <TfiPencil className="text-9xl text-neutral-500"/>
       )}
     </>
   );

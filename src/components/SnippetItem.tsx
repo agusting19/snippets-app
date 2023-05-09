@@ -2,6 +2,8 @@ import { twMerge } from "tailwind-merge";
 import { useSnippetsStore } from "../store/snippetsStore";
 import { desktopDir, join } from "@tauri-apps/api/path";
 import { readTextFile, removeFile } from "@tauri-apps/api/fs";
+import { toast } from "react-hot-toast";
+import { FiTrash, FiX } from "react-icons/fi";
 
 interface Props {
   snippetName: string;
@@ -42,6 +44,15 @@ const SnippetItem = ({ snippetName }: Props) => {
     );
     await removeFile(filePath);
     removeSnippet(snippetName);
+
+    toast.success("Snippet deleted!", {
+      duration: 1500,
+      position: "bottom-right",
+      style: {
+        background: "#202020",
+        color: "#fff",
+      },
+    });
   };
 
   return (
@@ -55,14 +66,22 @@ const SnippetItem = ({ snippetName }: Props) => {
       onClick={handleClick}
     >
       <h1>{snippetName}</h1>
-      <div>
+      <div className="flex gap-2">
         <button
           onClick={(e) => {
             e.stopPropagation();
             handleDelete(snippetName);
           }}
         >
-          del
+          <FiTrash className="text-neutral-500 hover:text-neutral-200" />
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setSelectedSnippet(null);
+          }}
+        >
+          <FiX className="text-neutral-500 hover:text-neutral-200" />
         </button>
       </div>
     </div>

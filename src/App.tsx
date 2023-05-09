@@ -1,4 +1,5 @@
 import { SnippetEditor, SnippetForm, SnippetList } from "./components";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <div className="col-span-9 bg-neutral-950 flex justify-center items-center">
         <SnippetEditor />
       </div>
+      <Toaster />
     </div>
   );
 };
