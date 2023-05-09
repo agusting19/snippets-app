@@ -14,7 +14,7 @@ const SnippetEditor = () => {
     const saveText = setTimeout(async () => {
       const desktopPath = await desktopDir();
       await writeTextFile(
-        `${desktopPath}/Agu/Snippets/${selectedSnippet}.js`,
+        `${desktopPath}/Agu/Snippets/${selectedSnippet.name}.js`,
         text ?? ""
       );
     }, 1000);
@@ -32,6 +32,7 @@ const SnippetEditor = () => {
           defaultLanguage="javascript"
           options={{ fontSize: 20 }}
           onChange={(value) => setText(value)}
+          value={selectedSnippet.code ?? ""}
         />
       ) : (
         <div>Nothing to show</div>

@@ -1,11 +1,16 @@
 import { create } from "zustand";
 
+interface Snippet {
+  name: string;
+  code: string;
+}
+
 interface SnippetsStore {
   snippetsNames: string[];
-  selectedSnippet: string | null;
+  selectedSnippet: Snippet | null;
   addSnippetsName: (name: string) => void;
   setSnippetsNames: (names: string[]) => void;
-  setSelectedSnippet: (name: string) => void;
+  setSelectedSnippet: (name: Snippet | null) => void;
 }
 
 export const useSnippetsStore = create<SnippetsStore>((set) => ({
