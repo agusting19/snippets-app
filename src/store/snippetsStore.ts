@@ -11,6 +11,7 @@ interface SnippetsStore {
   addSnippetsName: (name: string) => void;
   setSnippetsNames: (names: string[]) => void;
   setSelectedSnippet: (name: Snippet | null) => void;
+  removeSnippetsName: (name: string) => void;
 }
 
 export const useSnippetsStore = create<SnippetsStore>((set) => ({
@@ -20,4 +21,8 @@ export const useSnippetsStore = create<SnippetsStore>((set) => ({
     set((state) => ({ snippetsNames: [...state.snippetsNames, name] })),
   setSnippetsNames: (names) => set({ snippetsNames: names }),
   setSelectedSnippet: (name) => set({ selectedSnippet: name }),
+  removeSnippetsName: (name) =>
+    set((state) => ({
+      snippetsNames: state.snippetsNames.filter((n) => n !== name),
+    })),
 }));
