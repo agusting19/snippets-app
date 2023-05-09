@@ -66,24 +66,26 @@ const SnippetItem = ({ snippetName }: Props) => {
       onClick={handleClick}
     >
       <h1>{snippetName}</h1>
-      <div className="flex gap-2">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleDelete(snippetName);
-          }}
-        >
-          <FiTrash className="text-neutral-500 hover:text-neutral-200" />
-        </button>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setSelectedSnippet(null);
-          }}
-        >
-          <FiX className="text-neutral-500 hover:text-neutral-200" />
-        </button>
-      </div>
+      {selectedSnippet?.name === snippetName && (
+        <div className="flex gap-2">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(snippetName);
+            }}
+          >
+            <FiTrash className="text-neutral-500 hover:text-neutral-200" />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedSnippet(null);
+            }}
+          >
+            <FiX className="text-neutral-500 hover:text-neutral-200" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
